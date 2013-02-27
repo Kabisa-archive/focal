@@ -1,0 +1,128 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.pivotaltracker.com/services/v3/projects/767275
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      X-Trackertoken:
+      - <PIVOTAL_TOKEN>
+      Content-Type:
+      - application/xml
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - '200'
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.14
+      Etag:
+      - '"9d17e73bcf2f6db5629d0d3ebfa9ed6b"'
+      X-Runtime:
+      - '81'
+      Cache-Control:
+      - private, max-age=0, must-revalidate
+      Server:
+      - nginx/1.2.2 + Phusion Passenger 3.0.14 (mod_rails/mod_rack)
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA4VU32+bMBB+319h8dzVQLukq6i7aFrfpr10fbUMXIJbYyPb
+        NMt/v7OBQBJ1k5Cw77777qevePzTKvIO1kmjH5LsOk0I6MrUUu8ekt/PT5/v
+        kkf2qeiseYXKs0+EFLJm69U6X38pKB6DRIsW2JOphCLP4DzZVJXptS9oVEQb
+        D1Z49MEV6J1viD908JBI7WEHNmEZcp1Bot0e4I07L6zntTiwn0bjr6Bn4oDs
+        DJJxhzEAS6+yq/zqpqBLYQCJITC2sRJehSY1kBdrTFvQSRNQkz8PY5i18JCw
+        PM1uaJrTDIOdITHMrbTO8zmDQe1lu2QI1yULSdP7+JHvP54L+jFHdFH11gJm
+        ODvRfVuCPa8kZv0RNPKAFqUC7oV7c6NtaYwCoRPmbQ8FXSKiyTsoU0l/wOo2
+        gA3d4LyIHRCzJTfkGI8r6DlwGfekY7fpHOFRGJBSSy+F4ifIC2FADplzs+W1
+        0TCXxHFvuGvMnmU5Dl+sz79QgUuJEpRjBR0Pgwy7KSov30PWwi/G4LSJ+Zpk
+        X+/TFX5DE5U4tYz1E0qZPdJ4UTUt9tCNhb6UB3TXl0pWbCuUw2aMt6DoHfDG
+        +85NulkQ1GW/c1zomleNsYBHCxwfo2yFDx2fjP4HC1SVaVvpeWvqo9lSFCAt
+        hOK6RnbTFAlrxSEJCZ+oBwGKcFfkd6v0doUTOuyNiOyQxegJhQJohVRMDC/0
+        25sopRPXWuFcRkXkj5ZxuVy+5GnnjKhxgBzb1C/oeJgxd4yKnvovLD4F9muv
+        wRY0nod86JxvbOniHrlweHGTDSvusiDB76zGdUqP+/Qvmh2+LYEFAAA=
+    http_version: 
+  recorded_at: Wed, 27 Feb 2013 18:24:16 GMT
+- request:
+    method: get
+    uri: http://www.pivotaltracker.com/services/v3/projects/767275/iterations/current
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      X-Trackertoken:
+      - <PIVOTAL_TOKEN>
+      Content-Type:
+      - application/xml
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - '200'
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.14
+      X-Runtime:
+      - '111'
+      Etag:
+      - '"10a42c1b434b8ec0d0c07f53f3e219bb"'
+      Cache-Control:
+      - private, max-age=0, must-revalidate
+      Server:
+      - nginx/1.2.2 + Phusion Passenger 3.0.14 (mod_rails/mod_rack)
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA82YW2+bMBSA3/srPN5X7iSNKFW1rlInVau2bHuMXHATuoAz
+        Y5rm3+/YmJBLkzoJm5DyEPA5h2P787k4vHrNpuiFsCKl+aVhn1sGInlMkzQf
+        Xxo/hrcf+8ZVdBamnDDMQaZAfDEjlwZmDC+M6AyhZkw8iedEyaQ5J2PCjMgN
+        zTRRo3mZPRL2hkQ1oKQKjhlXQgnmhKcZMSLHsl3TckzHR5Y1kD/06fMwNKW4
+        Un1K87SY7NAFdW9Dt5JXypzgbFRwRvIxr208TSnmRmSH5tro0lPKUrK9LHIp
+        Ck7ZohLcsTSe73hB3wHj9QpJwRmjzyTmo+217AU9p+eHZiOxYl9+byR2KHoi
+        mJeMiLVZvpP7I+2XbBpNOJ8NTHM+n5/P0hfK8ZQzHP8m7DymWaVmFhM6Nxsf
+        hVpjhBSwLbA5m5sJk6mHVqTjksGyclhdUIlwHJMZJ0lorr9vrCekiFk6E9BF
+        NzQnH0Jz9VUjmOOMRNc5qk0iOePQlO8bMUb+lOAWSUaPi+ga9uwZ5ygh6Cej
+        NAvNteFGK2awjqCD99DYQ3Z/4LoDq1fR2OisfL6cCY71DHlOZajRWTFUT1PL
+        JceuLK0o1aYUGctHXVYvVk5zV1kVPuqx6miwKqOLLqq/7h72gnqXIzi6Y0aK
+        oiVE6TzfBfVy6DigfbcloP3+LqCPotB3rM5TqHzUoxBwfTdiMiIygi6Gexn8
+        Jk11mr+LgeUPrBb4k4bsi138QS7MKd+Rv2V4E8NN+JWvtrOy27f8IOj31tO4
+        FObklUf3ZHIm6gf4uzyKchSXfELZG/lIDaxLC1/eTSFrM641Vj8LcWdtTtVz
+        cVJi8B07gKqk00WM8lHvSOoUMVXp2MqRvJVVqzDVStnyT3KCBMtTR+mUIkca
+        8ncWOUfmBHvz+HWuigYAhY96AOpUJgmZptC8tULgl7LgUA8rg+cdBzFY9n4n
+        ggiGgl3J4SgQvSDobeSBzoGofNQDUac4KfODiuR7ipls06BzBtL29HXfaUYQ
+        5RO4MpANSltc6vd19sBRgJxCGjSI9sBV1xXbfd2xpPndvzgIhI96pOmEvANJ
+        G07SAsEPIyjyuGIIPYjbJXs/ecOlPIIJtJKVD4HOVunxdOi8VsMb5DCv6zcA
+        ykc96HQKvQOh2xvRrqH4FuFs+PXm6//lSpZdrsLhFK4qQ3o9fRXZIM6L9gIa
+        hPoiGS6VmwcY/AsW7wuuihYAAA==
+    http_version: 
+  recorded_at: Wed, 27 Feb 2013 18:24:16 GMT
+recorded_with: VCR 2.4.0

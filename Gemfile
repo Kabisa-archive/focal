@@ -4,6 +4,10 @@ gem 'rails', '3.2.12'
 
 gem 'pg'
 
+# See https://github.com/jsmestad/pivotal-tracker/pull/71
+# gem 'pivotal-tracker', '~> 0.5.10'
+gem 'pivotal-tracker', git: "https://github.com/amair/pivotal-tracker.git", branch: "master"
+
 # Bug in ActiveAdmin: https://github.com/gregbell/active_admin/issues/1773
 # gem 'activeadmin'
 gem 'activeadmin', github: 'Daxter/active_admin', branch: 'bugfix/1773-execjs'
@@ -23,4 +27,9 @@ group :test, :development do
   gem 'fabrication'
   gem 'capybara'
   gem 'rspec-rails'
+end
+
+group :test do
+  gem 'vcr'
+  gem 'webmock'
 end

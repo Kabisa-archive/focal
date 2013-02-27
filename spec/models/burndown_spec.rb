@@ -1,9 +1,25 @@
 require 'spec_helper'
 
 describe Burndown do
-  subject(:burndown) { Fabricate(:burndown, pivotal_project_ids: "112,42") }
+
+  context "project_ids" do
+    before do
+      Fabricate(:burndown, pivotal_project_ids: "112,42",  pivotal_token: "ABC")
+      Fabricate(:burndown, pivotal_project_ids: "88, 112", pivotal_token: "XYZ")
+    end
+
+    subject(:data) { Burndown.pivotal_project_data }
+
+    it "reports all project_ids" do
+      expect(data.size).to eql(3)
+      expect(data).to include({42 => "ABC"}, {88 => "XYZ"})
+      expect(data[112]).to match(/ABC|XYZ/)
+    end
+  end
 
   context "reports data for current iteration" do
+    subject(:burndown) { Fabricate(:burndown, pivotal_project_ids: "112,42") }
+
     context "when there is data available" do
 
       before do

@@ -1,5 +1,16 @@
 class Burndown < ActiveRecord::Base
 
+  # project_ids and token combinations
+  def self.pivotal_project_data
+    result = {}
+    Burndown.find_each do |burndown|
+      burndown.pivotal_project_ids.split(",").map { |i| i.scan(/\d+/).first.to_i }.each do |project_id|
+        result[project_id] ||= burndown.pivotal_token
+      end
+    end
+    result
+  end
+
   # Return data to plot a burndown for the last available iteration
   def data
     result = {}
