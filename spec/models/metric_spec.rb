@@ -2,7 +2,12 @@ require 'spec_helper'
 
 describe Metric do
   context "importing metrics" do
-    subject(:metric) { Metric.create_for_pivotal_project(ENV['PIVOTAL_PROJECT_ID'], ENV['PIVOTAL_TOKEN']) }
+    let(:project_id) { 767275 }
+
+    # Only required if recording VCR.
+    let(:token) { ENV.fetch('PIVOTAL_TOKEN', 'token') }
+
+    subject(:metric) { Metric.create_for_pivotal_project(project_id, token) }
 
     context "for today" do
       it "stores a new metric" do

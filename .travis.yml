@@ -2,16 +2,6 @@
 language: ruby
 notifications:
   email: false
-env:
-  global:
-  - secure: |-
-      GApuTXdtGCV5fHff8n8rq4UKEeg15L5ItlFo3LFcwIJxLmV6fDQtFRYd+e/z
-      CocQsTfQucskMIi0MKalC2X4ydZQjIcEHlleiqkrEY8FzifKD/oGZHgc17DX
-      q61ufQA0Nn/b6XHD61t7GRtFo3gKmArDdz636uWbOP+PlZWIZyU=
-  - secure: |-
-      cFkmU0oFr/s9ELTaaJh2XzyVxg1U7xZcZOY2TL5AQ8GEqGFIamtQ3dS3s/1b
-      BsKmK4/WxtiWhdaPpzYEZ8Z3Y8jvLTCepXXsk04K1KAVfphSl34hQHcv8cCZ
-      8SmG69Sx6kX053NHf/QYsr5UAzkU0aPAghduYJGsbKBa0GDMhZc=
 rvm:
 - 1.9.2
 - 1.9.3
