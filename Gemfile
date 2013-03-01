@@ -24,9 +24,12 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'cucumber-rails', require: false
+  gem 'rspec-rails'
+
   gem 'fabrication'
   gem 'capybara'
-  gem 'rspec-rails'
+  gem 'database_cleaner'
 end
 
 group :test do
