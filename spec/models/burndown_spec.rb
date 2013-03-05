@@ -30,8 +30,8 @@ describe Burndown do
         expect(burndown.json_data).to have(3).elements
 
         expect(burndown.json_data[0]).to eql(['Day', 'Unstarted', 'Started', 'Finished', 'Delivered', 'Accepted', 'Rejected'])
-        expect(burndown.json_data[1]).to eql(['2013-02-24', 34, 8, 5, 3, 8, 3])
-        expect(burndown.json_data[2]).to eql(['2013-02-25', 34, 8, 5, 3, 8, 3])
+        expect(burndown.json_data[1]).to eql(['Sun 24', 34, 8, 5, 3, 8, 3])
+        expect(burndown.json_data[2]).to eql(['Mon 25', 34, 8, 5, 3, 8, 3])
       end
 
       it "returns assorted data" do

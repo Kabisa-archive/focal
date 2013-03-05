@@ -16,7 +16,7 @@ class Burndown < ActiveRecord::Base
     result = []
     result << ['Day', 'Unstarted', 'Started', 'Finished', 'Delivered', 'Accepted', 'Rejected']
     data.each do |d|
-      result << [d.captured_on.to_s, d.unstarted, d.started, d.finished, d.delivered, d.accepted, d.rejected]
+      result << [d.captured_on.strftime("%a %e"), d.unstarted, d.started, d.finished, d.delivered, d.accepted, d.rejected]
     end
     result
   end

@@ -10,7 +10,7 @@
     var jsonData = $.parseJSON($.ajax({
       url: "#{metrics_burndown_path(@burndown, format: :json)}",
       dataType: "json",
-      async: false
+      async: false,
     }).responseText);
 
     console.log(typeof jsonData);
@@ -21,7 +21,10 @@
       isStacked: true,
       // Unstarted, Started, Finished, Delivered, Accepted, Rejected
       colors: ['#3751A8', '#4AB2D5', '#FBE151', '#C3E94F', '#93BC17', '#F93C3C'],
-      hAxis: { title: "Day" }
+      hAxis: {
+        slantedText: true,
+        slantedTextAngle: 30
+      }
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('burndown-chart'));
