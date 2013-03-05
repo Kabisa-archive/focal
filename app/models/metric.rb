@@ -24,16 +24,6 @@ class Metric < ActiveRecord::Base
     end
   end
 
-  # Merge two metrics into one
-  def merge(other)
-    # Add up attributes
-    %w(unstarted started finished delivered accepted rejected).each do |attr|
-      self.send(:"#{attr}=", self.send(:"#{attr}") + other.send(:"#{attr}"))
-    end
-
-    return self
-  end
-
   private
 
   def fetch_from_pivotal_tracker

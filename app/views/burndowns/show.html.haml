@@ -1,0 +1,28 @@
+#burndown-chart
+
+%script(type="text/javascript" src="https://www.google.com/jsapi")
+
+:javascript
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var jsonData = $.parseJSON($.ajax({
+      url: "#{metrics_burndown_path(@burndown, format: :json)}",
+      dataType: "json",
+      async: false
+    }).responseText);
+
+    console.log(typeof jsonData);
+
+    var data = google.visualization.arrayToDataTable(jsonData);
+
+    options = {
+      isStacked: true,
+      hAxis: { title: "Day" }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('burndown-chart'));
+    chart.draw(data, options);
+  }
+

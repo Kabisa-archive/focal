@@ -6,7 +6,7 @@ Fabricator(:metric) do
   unstarted    34
   started      8
   finished     5
-  delivered    23
+  delivered    3
   accepted     8
   rejected     3
 end

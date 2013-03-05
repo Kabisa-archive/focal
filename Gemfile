@@ -14,6 +14,8 @@ gem 'activeadmin', github: 'Daxter/active_admin', branch: 'bugfix/1773-execjs'
 gem 'meta_search', '>= 1.1.0.pre'
 
 gem 'jquery-rails'
+gem 'haml'
+gem 'jbuilder'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,13 +25,19 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  gem 'haml-rails'
+end
+
 group :test, :development do
   gem 'cucumber-rails', require: false
   gem 'rspec-rails'
+  gem "json_spec"
 
   gem 'fabrication'
-  gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
+  gem 'launchy'
 end
 
 group :test do

@@ -43,17 +43,6 @@ describe Metric do
     end
   end
 
-  context "merging" do
-    let(:one) { Fabricate(:metric, iteration_id: 12, project_id: 42, unstarted: 12) }
-    let(:two) { Fabricate(:metric, iteration_id: 11, project_id: 42, unstarted: 6) }
-
-    subject(:result) { one.merge(two) }
-
-    it "merges two metrics" do
-      expect(result.unstarted).to eql(12 + 6)
-    end
-  end
-
   context "last_iteration" do
     it "returns nil if there is no data" do
       expect(Metric.last_iteration_for_project_id(42)).to be_nil

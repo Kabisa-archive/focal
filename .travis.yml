@@ -9,6 +9,10 @@ rvm:
   - 1.9.3
   - 2.0.0
   - rbx-19mode
+
+env:
+  global:
+    - DISPLAY=":99.0"
   
 matrix:
   allow_failures:
@@ -22,3 +26,4 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database focal_test;' -U postgres
   - bundle exec rake db:migrate
+  - "sh -e /etc/init.d/xvfb start"
