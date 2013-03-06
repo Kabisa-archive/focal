@@ -10,4 +10,3 @@ Fabricator(:metric) do
   accepted     8
   rejected     3
 end
-

@@ -19,8 +19,8 @@ class Metric < ActiveRecord::Base
 
   # Import metrics for all projects
   def self.import_all
-    Burndown.pivotal_project_data.each_pair do |project_id, token|
-      Metric.create_for_pivotal_project(project_id, token)
+    Burndown.find_each do |burndown|
+      Metric.create_for_pivotal_project(burndown.pivotal_project_id, burndown.pivotal_token)
     end
   end
 

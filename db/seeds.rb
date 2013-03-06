@@ -11,7 +11,7 @@ Metric.delete_all
 
 b = Burndown.create do |b|
   b.name = "Sample Burndown"
-  b.pivotal_project_ids = "42"
+  b.pivotal_project_id = 42
   b.pivotal_token = "abcdef"
 end
 
