@@ -7,12 +7,23 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Burndown.delete_all
+Iteration.delete_all
 Metric.delete_all
 
 b = Burndown.create do |b|
   b.name = "Sample Burndown"
   b.pivotal_project_id = 42
   b.pivotal_token = "abcdef"
+end
+
+i = Iteration.create do |i|
+  i.burndown = b
+
+  i.pivotal_iteration_id = 43143
+  i.number = 1
+
+  i.start_at = 1.week.ago
+  i.finish_at = 2.week.from_now
 end
 
 [
@@ -23,16 +34,13 @@ end
   [32,  6,  1,  7,  4,  0],
 
   [20,  9,  5,  8,  8,  0],
-  [18,  8,  2,  8, 12,  2],
-  [ 6, 16,  4,  2, 12, 10],
-  [ 3,  5,  0, 12, 30,  0],
-  [ 0,  1,  0,  0, 48,  1],
-].each_with_index do |metrics, i|
+  [18,  8,  2,  8, 12,  2]
+].each_with_index do |metrics, n|
 
   Metric.create do |m|
-    m.captured_on = (metrics.size - i).days.ago.to_date
-    m.project_id = 42
-    m.iteration_id = 1
+    m.captured_on = (1.week.ago + n.days).to_date
+
+    m.iteration_id = i.id
 
     m.unstarted = metrics[0]
     m.started   = metrics[1]

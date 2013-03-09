@@ -4,7 +4,7 @@ class CreateBurndowns < ActiveRecord::Migration
       t.string :name
 
       t.string :pivotal_token,       limit: 40, null: false
-      t.string :pivotal_project_ids,            null: false
+      t.string :pivotal_project_id,             null: false
 
       t.timestamps
     end

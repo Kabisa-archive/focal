@@ -3,19 +3,14 @@
 %script(type="text/javascript" src="https://www.google.com/jsapi")
 
 :javascript
+  var chartData = #{@burndown.to_json};
+
+:javascript
   google.load("visualization", "1", {packages:["corechart"]});
   google.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    var jsonData = $.parseJSON($.ajax({
-      url: "#{metrics_burndown_path(@burndown, format: :json)}",
-      dataType: "json",
-      async: false,
-    }).responseText);
-
-    console.log(typeof jsonData);
-
-    var data = google.visualization.arrayToDataTable(jsonData);
+    var data = google.visualization.arrayToDataTable(chartData);
 
     options = {
       isStacked: true,

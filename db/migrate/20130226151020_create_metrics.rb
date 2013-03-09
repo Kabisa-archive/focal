@@ -1,9 +1,8 @@
 class CreateMetrics < ActiveRecord::Migration
   def change
     create_table :metrics do |t|
-      # Where did they come from?
-      t.integer  :iteration_id, limit: 8, null: false
-      t.integer  :project_id,   limit: 8, null: false
+      t.integer  :iteration_id, null: false
+
       t.date     :captured_on
 
       # Actual metrics
@@ -17,6 +16,6 @@ class CreateMetrics < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :metrics, [:project_id, :iteration_id, :captured_on]
+    add_index :metrics, :iteration_id
   end
 end

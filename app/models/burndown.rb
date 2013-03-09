@@ -1,27 +1,39 @@
 class Burndown < ActiveRecord::Base
 
-  # Return a google charts compatible array of data
-  def json_data
-    result = []
-    result << ['Day', 'Unstarted', 'Started', 'Finished', 'Delivered', 'Accepted', 'Rejected']
-    data.each do |d|
-      result << [d.captured_on.strftime("%a %e"), d.unstarted, d.started, d.finished, d.delivered, d.accepted, d.rejected]
-    end
-    result
+  has_many :iterations,
+    order: "number DESC",
+    dependent: :destroy
+
+  has_many :metrics,
+    order: "metrics.captured_on ASC",
+    through: :iterations
+
+  # Import metrics for all projects
+  def self.import_all
+    Burndown.find_each { |burndown| burndown.import }
   end
 
-  # Return data to plot a burndown for the last available iteration
-  def data
-    # Gather project_id and iteration data
-    last_iteration = Metric.last_iteration_for_project_id(pivotal_project_id)
-    return [] if last_iteration.nil?
+  def import
+    Metric.create do |metric|
+      metric.iteration   = create_or_update_iteration
+      metric.captured_on = Time.now.utc.to_date
 
-    # Fetch data, one row per day
-    select = "captured_on, SUM(unstarted) AS unstarted, SUM(started) AS started, SUM(finished) AS finished, SUM(delivered) AS delivered, SUM(accepted) AS accepted, SUM(rejected) AS rejected"
-    Metric.select(select)
-      .where(["project_id = ? AND iteration_id = ?", pivotal_project_id, last_iteration])
-      .group(:captured_on)
-      .order('captured_on ASC')
-      .all
+      %w(unstarted started finished delivered accepted rejected).each do |state|
+        metric.send("#{state}=", pivotal_iteration.send("#{state}"))
+      end
+    end
+  end
+
+  private
+  def create_or_update_iteration
+    iterations.find_or_create_by_number(pivotal_iteration.number) do |iteration|
+      iteration.pivotal_iteration_id = pivotal_iteration.pivotal_id
+      iteration.start_at             = pivotal_iteration.start_at
+      iteration.finish_at            = pivotal_iteration.finish_at
+    end
+  end
+
+  def pivotal_iteration
+    @pivotal_iteration ||= PivotalIteration.new(pivotal_token, pivotal_project_id)
   end
 end

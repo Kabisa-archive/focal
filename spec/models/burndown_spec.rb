@@ -1,40 +1,102 @@
 require 'spec_helper'
 
 describe Burndown do
-  context "reports data for current iteration" do
-    subject(:burndown) { Fabricate(:burndown, pivotal_project_id: 42) }
 
-    context "when there is data available" do
+  context "relations" do
+    it { should have_many(:iterations).order("number DESC").dependent(:destroy) }
+    it { should have_many(:metrics).through(:iterations) }
+  end
+
+  context "import from Pivotal Tracker" do
+    context "for a single burndown" do
+      subject(:burndown) { FactoryGirl.create(:burndown, pivotal_project_id: 42, pivotal_token: "ABC") }
+
+      let(:start_datetime)  { 1.week.ago }
+      let(:finish_datetime) { 1.week.from_now }
+
+      let(:pivotal_double) {
+        double :pivotal_iteration,
+          number: 123,
+          pivotal_id: 42,
+          start_at: start_datetime,
+          finish_at: finish_datetime,
+          unstarted: 1,
+          started: 2,
+          finished: 3,
+          delivered: 5,
+          accepted: 8,
+          rejected: 13
+      }
+
       before do
-        Fabricate(:metric, project_id: 42, captured_on: "2013-02-24")
-        Fabricate(:metric, project_id: 42, captured_on: "2013-02-25")
+        subject.stub(:pivotal_iteration).and_return(pivotal_double)
       end
 
-      it "returns json data" do
-        expect(burndown.json_data).to have(3).elements
+      context "imports fresh data" do
+        context "when the iteration was not yet recorded" do
+          it "creates a new iteration " do
+            expect {
+              burndown.import
+            }.to change { burndown.iterations.count }.by(1)
+          end
 
-        expect(burndown.json_data[0]).to eql(['Day', 'Unstarted', 'Started', 'Finished', 'Delivered', 'Accepted', 'Rejected'])
-        expect(burndown.json_data[1]).to eql(['Sun 24', 34, 8, 5, 3, 8, 3])
-        expect(burndown.json_data[2]).to eql(['Mon 25', 34, 8, 5, 3, 8, 3])
-      end
+          context "iteration data" do
+            let(:iteration) { burndown.import ; Iteration.last }
 
-      it "returns assorted data" do
-        expect(burndown.data).to have(2).elements
+            it { expect(iteration.number).to eql(123) }
+            it { expect(iteration.pivotal_iteration_id).to eql(42) }
+            it { expect(iteration.start_at).to eql(start_datetime) }
+            it { expect(iteration.finish_at).to eql(finish_datetime) }
+          end
+        end
 
-        metric = burndown.data.first
-        expect(metric.captured_on).to eql(Date.parse("2013-02-24"))  # date
-        expect(metric.unstarted).to   eql(34)
-        expect(metric.started).to     eql(8)
-        expect(metric.finished).to    eql(5)
-        expect(metric.delivered).to   eql(3)
-        expect(metric.accepted).to    eql(8)
-        expect(metric.rejected).to    eql(3)
+        context "when the iteration has been recorded" do
+          before { burndown.import }
+
+          it "does not create a new iteration" do
+            expect {
+              burndown.import
+            }.to_not change { burndown.iterations.count }
+          end
+        end
+
+        context "import metric data for tody" do
+          it "creates a Metric" do
+            expect {
+              burndown.import
+            }.to change { burndown.metrics.count }.by(1)
+          end
+
+          context "metric data" do
+            let(:metric) { burndown.import ; Metric.last }
+
+            it { expect(metric.iteration_id).to eql(Iteration.last.id) }
+            it { expect(metric.captured_on).to eql(Time.now.utc.to_date) }
+
+            it { expect(metric.unstarted).to eql(1) }
+            it { expect(metric.started).to eql(2) }
+            it { expect(metric.finished).to eql(3) }
+            it { expect(metric.delivered).to eql(5) }
+            it { expect(metric.accepted).to eql(8) }
+            it { expect(metric.rejected).to eql(13) }
+          end
+        end
       end
     end
 
-    context "when there is no data available" do
-      it "returns an empty array" do
-        expect(burndown.data).to eql([])
+    context "for all the burndowns" do
+      let(:one) { FactoryGirl.create(:burndown, pivotal_project_id: 42, pivotal_token: "ABC") }
+      let(:two) { FactoryGirl.create(:burndown, pivotal_project_id: 88, pivotal_token: "XYZ") }
+
+      before do
+        Burndown.stub(:find_each).and_yield(one).and_yield(two)
+      end
+
+      it "for all burndowns" do
+        one.should_receive(:import).once
+        two.should_receive(:import).once
+
+        Burndown.import_all
       end
     end
   end

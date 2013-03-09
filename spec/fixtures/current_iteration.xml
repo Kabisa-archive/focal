@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iterations type="array">
+  <iteration>
+    <id type="integer">42</id>
+    <number type="integer">4</number>
+    <start type="datetime">2013/03/04 00:00:00 CET</start>
+    <finish type="datetime">2013/03/11 00:00:00 CET</finish>
+    <team_strength type="float">1</team_strength>
+    <stories type="array">
+      <story>
+        <id type="integer">45246677</id>
+        <project_id type="integer">767275</project_id>
+        <story_type>feature</story_type>
+        <url>http://www.pivotaltracker.com/story/show/45246677</url>
+        <estimate type="integer">8</estimate>
+        <current_state>accepted</current_state>
+        <description>Moar stories.</description>
+        <name>Some other story.</name>
+        <requested_by>Ariejan de Vroom</requested_by>
+        <owned_by>Ariejan de Vroom</owned_by>
+        <created_at type="datetime">2013/02/27 18:31:26 CET</created_at>
+        <updated_at type="datetime">2013/03/08 15:04:13 CET</updated_at>
+        <accepted_at type="datetime">2013/03/08 14:59:32 CET</accepted_at>
+      </story>
+      <story>
+        <id type="integer">45246893</id>
+        <project_id type="integer">767275</project_id>
+        <story_type>feature</story_type>
+        <url>http://www.pivotaltracker.com/story/show/45246893</url>
+        <estimate type="integer">2</estimate>
+        <current_state>started</current_state>
+        <description>WIP</description>
+        <name>In progress</name>
+        <requested_by>Ariejan de Vroom</requested_by>
+        <owned_by>Ariejan de Vroom</owned_by>
+        <created_at type="datetime">2013/02/27 18:33:53 CET</created_at>
+        <updated_at type="datetime">2013/02/27 18:33:58 CET</updated_at>
+      </story>
+      <story>
+        <id type="integer">45252093</id>
+        <project_id type="integer">767275</project_id>
+        <story_type>feature</story_type>
+        <url>http://www.pivotaltracker.com/story/show/45252093</url>
+        <estimate type="integer">13</estimate>
+        <current_state>rejected</current_state>
+        <description></description>
+        <name>Rejects</name>
+        <requested_by>Ariejan de Vroom</requested_by>
+        <owned_by>Ariejan de Vroom</owned_by>
+        <created_at type="datetime">2013/02/27 19:05:03 CET</created_at>
+        <updated_at type="datetime">2013/03/08 15:04:19 CET</updated_at>
+        <notes type="array">
+          <note>
+            <id type="integer">38056687</id>
+            <text>Meh
+</text>
+            <author>Ariejan de Vroom</author>
+            <noted_at type="datetime">2013/02/27 19:05:19 CET</noted_at>
+          </note>
+        </notes>
+      </story>
+      <story>
+        <id type="integer">45252165</id>
+        <project_id type="integer">767275</project_id>
+        <story_type>feature</story_type>
+        <url>http://www.pivotaltracker.com/story/show/45252165</url>
+        <estimate type="integer">3</estimate>
+        <current_state>finished</current_state>
+        <description></description>
+        <name>Finished</name>
+        <requested_by>Ariejan de Vroom</requested_by>
+        <owned_by>Ariejan de Vroom</owned_by>
+        <created_at type="datetime">2013/02/27 19:05:49 CET</created_at>
+        <updated_at type="datetime">2013/03/08 15:03:53 CET</updated_at>
+      </story>
+      <story>
+        <id type="integer">45252187</id>
+        <project_id type="integer">767275</project_id>
+        <story_type>feature</story_type>
+        <url>http://www.pivotaltracker.com/story/show/45252187</url>
+        <estimate type="integer">5</estimate>
+        <current_state>delivered</current_state>
+        <description></description>
+        <name>Just delivered.</name>
+        <requested_by>Ariejan de Vroom</requested_by>
+        <owned_by>Ariejan de Vroom</owned_by>
+        <created_at type="datetime">2013/02/27 19:06:00 CET</created_at>
+        <updated_at type="datetime">2013/03/08 15:04:06 CET</updated_at>
+      </story>
+      <story>
+        <id type="integer">45246651</id>
+        <project_id type="integer">767275</project_id>
+        <story_type>feature</story_type>
+        <url>http://www.pivotaltracker.com/story/show/45246651</url>
+        <estimate type="integer">1</estimate>
+        <current_state>unstarted</current_state>
+        <description>This is a test story. Part 1.</description>
+        <name>Test story 1</name>
+        <requested_by>Ariejan de Vroom</requested_by>
+        <created_at type="datetime">2013/02/27 18:31:12 CET</created_at>
+        <updated_at type="datetime">2013/03/08 15:03:43 CET</updated_at>
+      </story>
+    </stories>
+  </iteration>
+</iterations>

@@ -5,6 +5,8 @@
 # files.
 
 require 'cucumber/rails'
+require 'cucumber/rspec/doubles'
+
 World(JsonSpec::Matchers)
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In

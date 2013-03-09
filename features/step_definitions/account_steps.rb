@@ -1,5 +1,5 @@
 Given /^I have an account with "(.*?)"$/ do |email|
-  @my_account = Fabricate(:admin_user, email: email)
+  @my_account = FactoryGirl.create(:admin_user, email: email)
 end
 
 When /^I sign in with "(.*?)" and "(.*?)"$/ do |email, password|

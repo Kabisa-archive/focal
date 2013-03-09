@@ -4,13 +4,10 @@ Feature: Burndown
   So I can see this sprint's progress
 
   Background:
-    Given my burndown is available
-
-  Scenario:
-    When I download the JSON metrics data
-    Then I see the metrics as JSON
+    Given I have a burndown
 
   @javascript
   Scenario:
     When I look at my burndown
-    Then I can see sprint progress
+    Then I can see a Google Chart
+    And I can see sprint progress

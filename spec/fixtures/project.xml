@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <id>767275</id>
+  <name>Focal Test Account</name>
+  <iteration_length type="integer">1</iteration_length>
+  <week_start_day>Monday</week_start_day>
+  <point_scale>0,1,2,3</point_scale>
+  <account>Ariejan de Vroom</account>
+  <start_date type="date">2013/02/11</start_date>
+  <first_iteration_start_time type="datetime">2013/02/11 00:00:00 CET</first_iteration_start_time>
+  <current_iteration_number type="integer">4</current_iteration_number>
+  <enable_tasks type="boolean">true</enable_tasks>
+  <velocity_scheme>Average of 3 iterations</velocity_scheme>
+  <current_velocity>1</current_velocity>
+  <initial_velocity>40</initial_velocity>
+  <number_of_done_iterations_to_show>12</number_of_done_iterations_to_show>
+  <labels></labels>
+  <last_activity_at type="datetime">2013/02/27 19:06:06 CET</last_activity_at>
+  <allow_attachments>true</allow_attachments>
+  <public>false</public>
+  <use_https>false</use_https>
+  <bugs_and_chores_are_estimatable>false</bugs_and_chores_are_estimatable>
+  <commit_mode>false</commit_mode>
+  <memberships type="array">
+    <membership>
+      <id>2860463</id>
+      <person>
+        <email>ariejan@kabisa.nl</email>
+        <name>Ariejan de Vroom</name>
+        <initials>AdV</initials>
+      </person>
+      <role>Owner</role>
+    </membership>
+  </memberships>
+  <integrations type="array">
+  </integrations>
+</project>
