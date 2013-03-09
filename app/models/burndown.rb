@@ -1,5 +1,7 @@
 class Burndown < ActiveRecord::Base
 
+  attr_accessible :name, :pivotal_token, :pivotal_project_id
+
   has_many :iterations,
     order: "number DESC",
     dependent: :destroy

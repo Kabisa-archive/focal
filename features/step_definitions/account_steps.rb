@@ -1,3 +1,10 @@
+Given /^I am logged in as an administrator$/ do
+  steps %{
+    Given I have an account with "admin@example.com"
+    And I sign in with "admin@example.com" and "password"
+  }
+end
+
 Given /^I have an account with "(.*?)"$/ do |email|
   @my_account = FactoryGirl.create(:admin_user, email: email)
 end

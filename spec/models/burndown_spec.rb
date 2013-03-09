@@ -7,6 +7,12 @@ describe Burndown do
     it { should have_many(:metrics).through(:iterations) }
   end
 
+  context "attributes" do
+    it { should allow_mass_assignment_of(:name) }
+    it { should allow_mass_assignment_of(:pivotal_token) }
+    it { should allow_mass_assignment_of(:pivotal_project_id) }
+  end
+
   context "import from Pivotal Tracker" do
     context "for a single burndown" do
       subject(:burndown) { FactoryGirl.create(:burndown, pivotal_project_id: 42, pivotal_token: "ABC") }
