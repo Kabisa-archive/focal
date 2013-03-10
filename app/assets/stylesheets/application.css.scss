@@ -1,0 +1,18 @@
+@import "bourbon";
+@import "neat";
+@import "rocks";
+
+$font-size: 14px;
+
+body {
+  @include reset;
+
+  padding: 0;
+  margin: 0;
+
+  font-family: $helvetica;
+  font-size: $font-size;
+}
+
+// Application specific styling
+@import "burndowns";

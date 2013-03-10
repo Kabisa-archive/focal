@@ -172,6 +172,9 @@ GEM
     mocha (0.10.5)
       metaclass (~> 0.0.1)
     multi_json (1.6.1)
+    neat (1.2.0)
+      bourbon (>= 2.1)
+      sass (>= 3.2)
     newrelic_rpm (3.5.8.72)
     nokogiri (1.5.6)
     nokogiri-happymapper (0.5.6)
@@ -211,6 +214,8 @@ GEM
       railties (~> 3.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rocks (0.0.5)
+      sass (>= 3.1)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -273,6 +278,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  bourbon
   capybara-webkit
   coffee-rails (~> 3.2.1)
   cucumber-rails
@@ -286,10 +292,12 @@ DEPENDENCIES
   json_spec
   launchy
   meta_search (>= 1.1.0.pre)
+  neat
   newrelic_rpm
   pg
   pivotal-tracker!
   rails (= 3.2.12)
+  rocks
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda
