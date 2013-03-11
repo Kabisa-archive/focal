@@ -10,6 +10,11 @@ class Burndown < ActiveRecord::Base
     order: "metrics.captured_on ASC",
     through: :iterations
 
+  def previous_iterations
+    # Drop the first iteration, the current iteration
+    iterations[1..-1]
+  end
+
   # Import metrics for all projects
   def self.import_all
     Burndown.find_each { |burndown| burndown.import }

@@ -14,5 +14,16 @@ body {
   font-size: $font-size;
 }
 
+a, a:link, a:visited {
+  color: #437af5;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1358f2;
+  text-decoration: underline;
+}
+
 // Application specific styling
 @import "burndowns";
+

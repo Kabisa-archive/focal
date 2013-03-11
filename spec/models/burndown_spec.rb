@@ -22,6 +22,14 @@ describe Burndown do
     end
   end
 
+  context "#previous_iterations" do
+    subject { FactoryGirl.create(:burndown_with_metrics, iteration_count: 3) }
+
+    it { expect(subject.iterations.count).to eql(3) }
+    it { expect(subject.previous_iterations.count).to eql(2) }
+    it { expect(subject.previous_iterations).to_not include(subject.current_iteration) }
+  end
+
   context "import from Pivotal Tracker" do
     context "for a single burndown" do
       subject(:burndown) { FactoryGirl.create(:burndown, pivotal_project_id: 42, pivotal_token: "ABC") }
