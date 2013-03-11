@@ -4,7 +4,7 @@ Given /^we have a fake Pivotal Tracker burndown$/ do
 
   pivotal_double =
     double :pivotal_iteration,
-      number: @my_burndown.iterations.last.number,
+      number: @my_burndown.current_iteration.number,
       pivotal_id: 42,
       start_at: 1.week.ago,
       finish_at: 1.week.from_now,

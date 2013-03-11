@@ -13,6 +13,15 @@ describe Burndown do
     it { should allow_mass_assignment_of(:pivotal_project_id) }
   end
 
+  context "#current_iterations" do
+    subject(:burndown) { FactoryGirl.create(:burndown_with_metrics, iteration_count: 3) }
+    let!(:iteration)   { burndown.iterations.where(number: 3).first }
+
+    it "returns the correct, current iteration" do
+      expect(burndown.current_iteration).to eql(iteration)
+    end
+  end
+
   context "import from Pivotal Tracker" do
     context "for a single burndown" do
       subject(:burndown) { FactoryGirl.create(:burndown, pivotal_project_id: 42, pivotal_token: "ABC") }

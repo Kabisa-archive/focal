@@ -26,6 +26,11 @@ class Burndown < ActiveRecord::Base
     end
   end
 
+  # Returns the current iteration
+  def current_iteration
+    iterations.first
+  end
+
   private
   def create_or_update_iteration
     iterations.find_or_create_by_number(pivotal_iteration.number) do |iteration|
