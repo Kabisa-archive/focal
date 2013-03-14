@@ -1,0 +1,40 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.burndown {
+  h1 {
+    color: #333;
+    background: none;
+    text-shadow: none;
+    text-align: center;
+  }
+
+  .details {
+    text-align: center;
+
+    ul {
+      li {
+        display: none;
+      }
+      li.duration {
+        display: block;
+      }
+    }
+  }
+
+  .chart {
+    width: 100%;
+    height: 450px;
+  }
+
+  #previous_iterations {
+    display: none;
+  }
+
+  .footer {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

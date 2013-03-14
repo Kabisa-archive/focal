@@ -5,6 +5,7 @@
     %ul
       %li.duration #{@iteration.start_on} &mdash; #{@iteration.finish_on}
       %li.pt_link= link_to "pivotal tracker", @burndown.pivotal_tracker_url
+      %li.print= link_to "print", "javascript:print();"
 
   #burndown-chart.chart
 
