@@ -10,6 +10,12 @@ describe BurndownDecorator do
     )
   }
 
+  context "#session_identifier" do
+    it "returns a unique session id" do
+      expect(burndown.session_identifier).to eql("session_burndown_#{burndown.id}")
+    end
+  end
+
   context "#pivotal_tracker_url" do
     it "returns URL to pivotal tracker" do
       expected = "https://pivotaltracker.com/projects/123123"

@@ -20,6 +20,15 @@ When /^I fill out the burndown form$/ do
   end
 end
 
+When /^I set a password for my burndown$/ do
+  visit "/admin/burndowns/#{@my_burndown.id}/edit"
+
+  within("#edit_burndown") do
+    fill_in "Password", with: "secretsauce"
+    click_button "Update Burndown"
+  end
+end
+
 When /^I update the pivotal token of the burndown$/ do
   visit "/admin/burndowns/#{@burndown.id}/edit"
 

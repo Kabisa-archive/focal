@@ -6,6 +6,7 @@ Focal::Application.routes.draw do
     resources :iterations, only: [:show]
 
   	member {
+      get :protected
   		get :metrics
   	}
   end

@@ -1,6 +1,10 @@
 class Burndown < ActiveRecord::Base
 
-  attr_accessible :name, :pivotal_token, :pivotal_project_id
+  attr_accessor :password
+
+  attr_accessible :name, :pivotal_token, :pivotal_project_id, :password
+
+  before_save :store_password
 
   has_many :iterations,
     order: "number DESC",
@@ -38,7 +42,20 @@ class Burndown < ActiveRecord::Base
     iterations.first
   end
 
+  def authenticated?(password)
+    return true if !password_protected?
+    BCrypt::Password.new(password_digest) == password
+  end
+
+  def password_protected?
+    password_digest.present?
+  end
+
   private
+
+  def store_password
+    self.password_digest = password.blank? ? nil : BCrypt::Password.create(password)
+  end
 
   def update_burndown_utc_offset
     update_attribute(:utc_offset, pivotal_iteration.utc_offset)

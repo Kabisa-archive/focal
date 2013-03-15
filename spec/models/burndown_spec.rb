@@ -13,6 +13,24 @@ describe Burndown do
     it { should allow_mass_assignment_of(:pivotal_project_id) }
   end
 
+  context "password protection" do
+    context "#password_protected?" do
+      it { expect(FactoryGirl.create(:burndown, password: nil)).to_not be_password_protected }
+      it { expect(FactoryGirl.create(:burndown, password: "meh")).to be_password_protected }
+    end
+
+    context "#authenticated?" do
+      subject(:burndown) { FactoryGirl.create(:burndown, password: "secretsauce") }
+
+      it { expect(burndown.authenticated?("secretsauce")).to be_true }
+      it { expect(burndown.authenticated?("fubar")).to be_false }
+
+      it "returns true when no password is set" do
+        expect(FactoryGirl.build(:burndown).authenticated?("asdf")).to be_true
+      end
+    end
+  end
+
   context "#current_iterations" do
     subject(:burndown) { FactoryGirl.create(:burndown_with_metrics, iteration_count: 3) }
     let!(:iteration)   { burndown.iterations.where(number: 3).first }
