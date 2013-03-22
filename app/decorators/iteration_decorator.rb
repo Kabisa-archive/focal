@@ -18,7 +18,7 @@ class IterationDecorator < Draper::Decorator
     # Loop over each day in the iteration and use any recorded
     # metrics if available.
     source.start_on.upto(source.finish_on).each_with_index do |day, i|
-      m = source.metrics.fetch(i, nil)
+      m = source.metrics.find { |m| m.captured_on == day }
 
       result << [
         day.strftime("%a %e"),
