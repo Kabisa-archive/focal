@@ -23,14 +23,19 @@ class Burndown < ActiveRecord::Base
   def import
     update_burndown_utc_offset
 
-    Metric.create do |metric|
-      metric.iteration   = create_or_update_iteration
-      metric.captured_on = Time.now.utc.to_date
+    Metric.find_or_initialize_by_captured_on(Time.now.utc.to_date).tap do |metric|
+      metric.iteration = create_or_update_iteration
 
       %w(unstarted started finished delivered accepted rejected).each do |state|
         metric.send("#{state}=", pivotal_iteration.send("#{state}"))
       end
+
+      metric.save
     end
+  end
+
+  def force_update
+    import
   end
 
   # Returns the current iteration
