@@ -60,6 +60,54 @@ describe Burndown do
         subject.stub(:pivotal_iteration).and_return(pivotal_double)
       end
 
+      context "force reload today" do
+        it "updates todays data" do
+          burndown.import
+
+          new_double = double :pivotal_iteration,
+            number: 123,
+            pivotal_id: 42,
+            start_at: start_datetime,
+            finish_at: finish_datetime,
+            utc_offset: 3600,
+            unstarted: 99,
+            started: 2,
+            finished: 3,
+            delivered: 5,
+            accepted: 8,
+            rejected: 13
+
+          subject.stub(:pivotal_iteration).and_return(new_double)
+
+          expect {
+            burndown.force_update
+          }.to change { Metric.last.unstarted }.from(1).to(99)
+        end
+
+        it "does not create a duplicate metric" do
+          burndown.import
+
+          new_double = double :pivotal_iteration,
+            number: 123,
+            pivotal_id: 42,
+            start_at: start_datetime,
+            finish_at: finish_datetime,
+            utc_offset: 3600,
+            unstarted: 99,
+            started: 2,
+            finished: 3,
+            delivered: 5,
+            accepted: 8,
+            rejected: 13
+
+          subject.stub(:pivotal_iteration).and_return(new_double)
+
+          expect {
+            burndown.force_update
+          }.not_to change { Metric.count }
+        end
+      end
+
       context "imports fresh data" do
         it "update burndown utc_offset" do
           expect {

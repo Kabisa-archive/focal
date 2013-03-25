@@ -5,6 +5,9 @@ ActiveAdmin.register Burndown do
   index do
     selectable_column
     column :name
+    column() do |burndown|
+      link_to 'Force Update', force_update_admin_burndown_path(burndown), method: :put, confirmation: "Are you sure?"
+    end
     default_actions
   end
 
@@ -26,5 +29,11 @@ ActiveAdmin.register Burndown do
     end
 
     f.actions
+  end
+
+  member_action :force_update, method: :put do
+    burndown = Burndown.find(params[:id])
+    burndown.force_update
+    redirect_to :back, notice: "Update performed. Thank you."
   end
 end
