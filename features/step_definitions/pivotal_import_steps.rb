@@ -25,6 +25,17 @@ When /^the system imports metrics from Pivotal Tracker$/ do
   @expect_json = BurndownDecorator.decorate(@my_burndown).to_json
 end
 
+When /^I can request an update for today$/ do
+  burndown = double :burndown
+  burndown.should_receive(:force_update).once
+  Burndown.stub(:find).with(@my_burndown.id.to_s).and_return(burndown)
+
+  visit "/admin/burndowns"
+  within("#burndowns tr#burndown_#{@my_burndown.id}") do
+    click_link "Force Update"
+  end
+end
+
 Then /^I can see my burndown was updated$/ do
   step "I look at my burndown"
 
