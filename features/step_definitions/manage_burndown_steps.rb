@@ -42,7 +42,7 @@ end
 
 When /^I delete the burndown$/ do
   visit "/admin/burndowns"
-  within("#burndowns tr#burndown_#{@burndown.id}") do
+  within("#index_table_burndowns tr#burndown_#{@burndown.id}") do
     click_link "Delete"
   end
 
@@ -85,7 +85,7 @@ Then /^I should see those burndowns in the overview$/ do
   visit "/admin/burndowns"
 
   @burndowns.each do |burndown|
-    within("table#burndowns") do
+    within("table#index_table_burndowns") do
       expect(page).to have_selector("tr#burndown_#{burndown.id}")
       within("tr#burndown_#{burndown.id}") do
         expect(page).to_not have_selector("td.id")

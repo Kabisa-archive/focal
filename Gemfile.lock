@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/Daxter/active_admin.git
-  revision: 1b1cc0ea4836497a580275453be04e832d467505
-  branch: bugfix/1773-execjs
+  remote: git://github.com/gregbell/active_admin.git
+  revision: 0f518683d9e85e0898bfcacca2d331476de7e05e
   specs:
     activeadmin (0.5.1)
       arbre (>= 1.0.1)

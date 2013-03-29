@@ -9,8 +9,9 @@ gem 'pg'
 gem 'pivotal-tracker', git: "https://github.com/amair/pivotal-tracker.git", branch: "master"
 
 # Bug in ActiveAdmin: https://github.com/gregbell/active_admin/issues/1773
+# But #1173 and 1940 have been merged, but have not been released yet.
 # gem 'activeadmin'
-gem 'activeadmin', github: 'Daxter/active_admin', branch: 'bugfix/1773-execjs'
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'meta_search', '>= 1.1.0.pre'
 
 gem 'jquery-rails'
