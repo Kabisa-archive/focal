@@ -4,3 +4,4 @@ Feature: Campfire Integration
     So I can easily see the updated burndown
 
     Scenario: Post Campfire message after import
+    Scenario: Add Campfire credentials in admin
