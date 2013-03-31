@@ -11,6 +11,10 @@ When /^I look at a previous burndown$/ do
   visit "/burndowns/#{@my_burndown.id}/iterations/#{@previous_iteration.number}"
 end
 
+When(/^I visit my burndown print page$/) do
+  visit "/burndowns/#{@my_burndown.id}/iterations/#{@my_burndown.current_iteration.number}/print"
+end
+
 Then /^I can see a Google Chart$/ do
   expect(page.source).to have_css("#burndown-chart svg")
 end
@@ -61,4 +65,8 @@ Then /^I see links to previous iterations$/ do
       expect(page).to have_link("Iteration #{iteration.number}", href: url)
     end
   end
+end
+
+Then(/^I should see the print style applied$/) do
+  expect(page.source).to have_css('link[rel=stylesheet][href*=print][media=all]')
 end
