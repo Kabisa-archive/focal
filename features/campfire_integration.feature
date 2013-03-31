@@ -7,6 +7,9 @@ Feature: Campfire Integration
         Given I am logged in as an administrator
 
     Scenario: Post Campfire message after import
+        Given a campfire enabled burndown exists
+        When the system imports metrics from Pivotal Tracker
+        Then a notification is posted to Campfire
 
     Scenario: Add Campfire credentials in admin
         Given a burndown exists

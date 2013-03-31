@@ -13,6 +13,7 @@ SimpleCov.start
 
 require 'cucumber/rails'
 require 'cucumber/rspec/doubles'
+require 'webmock/cucumber'
 
 World(JsonSpec::Matchers)
 

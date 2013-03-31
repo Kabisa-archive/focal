@@ -36,6 +36,8 @@ class Burndown < ActiveRecord::Base
       end
 
       metric.save
+
+      notify_campfire if campfire_enabled?
     end
   end
 
@@ -49,6 +51,14 @@ class Burndown < ActiveRecord::Base
   end
 
   private
+
+  def notify_campfire
+    message = "A new burndown is available at http://#{Settings.site_url}/burndowns/#{id}"
+
+    campfire = Tinder::Campfire.new campfire_subdomain, token: campfire_token
+    room = campfire.find_room_by_id(campfire_room_id)
+    room.speak message
+  end
 
   def update_burndown_utc_offset
     update_attribute(:utc_offset, pivotal_iteration.utc_offset)

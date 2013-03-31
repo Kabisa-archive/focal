@@ -1,0 +1,13 @@
+defaults: &defaults
+  site_url: focal.yourdomain.com
+
+development:
+  <<: *defaults
+  site_url: focal.dev
+
+test:
+  <<: *defaults
+  site_url: focal.test
+
+production:
+  <<: *defaults

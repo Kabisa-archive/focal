@@ -75,6 +75,29 @@ describe Burndown do
         subject.stub(:pivotal_iteration).and_return(pivotal_double)
       end
 
+      context "Campfire notification" do
+        before(:each) do
+          burndown.update_attributes(
+            campfire_subdomain: "subdomain",
+            campfire_token: "secret-token",
+            campfire_room_id: "4242")
+          end
+
+        it "calls Tinder with a notification after import" do
+          expected = "A new burndown is available at http://focal.test/burndowns/#{burndown.id}"
+
+          room = double(:tinder_room)
+          room.should_receive(:speak).with(expected)
+
+          campfire = double(:tinder_campfire)
+          campfire.should_receive(:find_room_by_id).with(burndown.campfire_room_id).and_return(room)
+
+          Tinder::Campfire.stub(:new).and_return(campfire)
+
+          burndown.import
+        end
+      end
+
       context "force reload today" do
         it "updates todays data" do
           burndown.import

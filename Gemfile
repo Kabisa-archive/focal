@@ -18,7 +18,8 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'jbuilder'
 gem 'draper'
-
+gem 'tinder'
+gem 'settingslogic'
 gem 'newrelic_rpm'
 
 gem 'coveralls', require: false
