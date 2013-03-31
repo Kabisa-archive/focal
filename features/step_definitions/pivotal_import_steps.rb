@@ -31,7 +31,7 @@ When /^I can request an update for today$/ do
   Burndown.stub(:find).with(@my_burndown.id.to_s).and_return(burndown)
 
   visit "/admin/burndowns"
-  within("#burndowns tr#burndown_#{@my_burndown.id}") do
+  within("#index_table_burndowns tr#burndown_#{@my_burndown.id}") do
     click_link "Force Update"
   end
 end
