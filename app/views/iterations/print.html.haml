@@ -1,0 +1,9 @@
+- content_for :print_stylesheet do
+  = stylesheet_link_tag :print, media: :all
+
+= render template: 'iterations/show'
+
+:javascript
+  $(document).ready(function() {
+    print();
+  });
