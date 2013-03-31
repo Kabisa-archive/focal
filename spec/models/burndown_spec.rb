@@ -11,6 +11,21 @@ describe Burndown do
     it { should allow_mass_assignment_of(:name) }
     it { should allow_mass_assignment_of(:pivotal_token) }
     it { should allow_mass_assignment_of(:pivotal_project_id) }
+    it { should allow_mass_assignment_of(:campfire_subdomain) }
+    it { should allow_mass_assignment_of(:campfire_token) }
+    it { should allow_mass_assignment_of(:campfire_room_id) }
+  end
+
+  context "#campfire_enabled" do
+    it "returns true when enabled" do
+      burndown = FactoryGirl.create(:burndown_with_campfire)
+      expect(burndown).to be_campfire_enabled
+    end
+
+    it "returns false when not enabled" do
+      burndown = FactoryGirl.create(:burndown)
+      expect(burndown).not_to be_campfire_enabled
+    end
   end
 
   context "#current_iterations" do
@@ -58,6 +73,29 @@ describe Burndown do
 
       before do
         subject.stub(:pivotal_iteration).and_return(pivotal_double)
+      end
+
+      context "Campfire notification" do
+        before(:each) do
+          burndown.update_attributes(
+            campfire_subdomain: "subdomain",
+            campfire_token: "secret-token",
+            campfire_room_id: "4242")
+          end
+
+        it "calls Tinder with a notification after import" do
+          expected = "A new burndown is available at http://focal.test/burndowns/#{burndown.id}"
+
+          room = double(:tinder_room)
+          room.should_receive(:speak).with(expected)
+
+          campfire = double(:tinder_campfire)
+          campfire.should_receive(:find_room_by_id).with(burndown.campfire_room_id).and_return(room)
+
+          Tinder::Campfire.stub(:new).and_return(campfire)
+
+          burndown.import
+        end
       end
 
       context "force reload today" do
