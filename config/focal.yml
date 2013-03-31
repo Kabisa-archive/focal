@@ -11,3 +11,4 @@ test:
 
 production:
   <<: *defaults
+  site_url: <%= ENV['FOCAL_SITE_URL'] %>
