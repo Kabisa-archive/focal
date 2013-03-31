@@ -8,6 +8,12 @@ FactoryGirl.define do
 
     utc_offset            0
 
+    factory :burndown_with_campfire do
+      campfire_subdomain 'domain'
+      campfire_token 'token'
+      campfire_room_id '42'
+    end
+
     factory :burndown_with_metrics do
       ignore do
         iteration_count 1
