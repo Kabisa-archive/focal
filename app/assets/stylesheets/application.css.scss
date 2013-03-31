@@ -1,0 +1,45 @@
+@import "bourbon";
+@import "neat";
+@import "rocks";
+
+$font-size: 14px;
+
+body {
+  @include reset;
+
+  padding: 0;
+  margin: 0;
+
+  font-family: $helvetica;
+  font-size: $font-size;
+}
+
+.page {
+  @include outer-container;
+}
+
+.footer {
+  @include span-columns(12);
+  @include omega();
+
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  text-align: center;
+
+  color: #666;
+}
+
+a, a:link, a:visited {
+  color: #437af5;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1358f2;
+  text-decoration: underline;
+}
+
+// Application specific styling
+@import "burndowns";
+

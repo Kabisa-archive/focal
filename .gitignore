@@ -18,6 +18,8 @@
 
 rerun.txt
 
+/coverage
+
 # Intellij
 focal.iml
 /.idea

@@ -51,4 +51,8 @@ end
   end
 end
 
-puts "Created burndown #{b.id}"
+puts "Created partial burndown #{b.id}"
+
+b = FactoryGirl.create(:burndown_with_metrics, iteration_count: 7)
+
+puts "Created multi iteration burndown #{b.id}"

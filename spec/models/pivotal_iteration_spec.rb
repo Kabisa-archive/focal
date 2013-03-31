@@ -26,6 +26,10 @@ describe PivotalIteration do
       to_return(:status => 200, :body => fixture_file("current_iteration.xml"))
   end
 
+  context "utc_offset" do
+    it { expect(subject.utc_offset).to eql(3600) }
+  end
+
   context "iteration information" do
     it { expect(subject.pivotal_id).to eql(42) }
     it { expect(subject.number).to eql(4) }

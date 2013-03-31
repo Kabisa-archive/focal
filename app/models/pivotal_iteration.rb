@@ -22,6 +22,10 @@ class PivotalIteration
     current_iteration.finish
   end
 
+  def utc_offset
+    project.first_iteration_start_time.utc_offset
+  end
+
   %w(unstarted started finished delivered accepted rejected).each do |state|
     define_method state do
       sum(state)

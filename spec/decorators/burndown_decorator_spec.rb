@@ -1,21 +1,19 @@
 require 'spec_helper'
 
 describe BurndownDecorator do
+  subject(:burndown) {
+    BurndownDecorator.decorate(
+      FactoryGirl.create(:burndown_with_metrics,
+        pivotal_project_id: 123123,
+        iteration_count: 3
+      )
+    )
+  }
 
-  context "#to_json" do
-    let!(:burndown)          { FactoryGirl.create(:burndown_with_metrics) }
-
-    subject { burndown.reload.decorate }
-
-    it "returns the correct JSON" do
-      expected = [
-        ['Day', 'Unstarted', 'Started', 'Finished', 'Delivered', 'Accepted', 'Rejected'],
-        [7.days.ago.strftime("%a %e"), 5, 8, 13, 21, 34, 55],
-        [6.days.ago.strftime("%a %e"), 5, 8, 13, 21, 34, 55],
-        [5.days.ago.strftime("%a %e"), 5, 8, 13, 21, 34, 55]
-      ].to_json
-
-      expect(subject.to_json).to be_json_eql(expected)
+  context "#pivotal_tracker_url" do
+    it "returns URL to pivotal tracker" do
+      expected = "https://pivotaltracker.com/projects/123123"
+      expect(burndown.pivotal_tracker_url).to eql(expected)
     end
   end
 end

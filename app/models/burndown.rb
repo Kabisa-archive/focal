@@ -10,23 +10,45 @@ class Burndown < ActiveRecord::Base
     order: "metrics.captured_on ASC",
     through: :iterations
 
+  def previous_iterations
+    # Drop the first iteration, the current iteration
+    iterations[1..-1]
+  end
+
   # Import metrics for all projects
   def self.import_all
     Burndown.find_each { |burndown| burndown.import }
   end
 
   def import
-    Metric.create do |metric|
-      metric.iteration   = create_or_update_iteration
-      metric.captured_on = Time.now.utc.to_date
+    update_burndown_utc_offset
+
+    Metric.find_or_initialize_by_captured_on(Time.now.utc.to_date).tap do |metric|
+      metric.iteration = create_or_update_iteration
 
       %w(unstarted started finished delivered accepted rejected).each do |state|
         metric.send("#{state}=", pivotal_iteration.send("#{state}"))
       end
+
+      metric.save
     end
   end
 
+  def force_update
+    import
+  end
+
+  # Returns the current iteration
+  def current_iteration
+    iterations.first
+  end
+
   private
+
+  def update_burndown_utc_offset
+    update_attribute(:utc_offset, pivotal_iteration.utc_offset)
+  end
+
   def create_or_update_iteration
     iterations.find_or_create_by_number(pivotal_iteration.number) do |iteration|
       iteration.pivotal_iteration_id = pivotal_iteration.pivotal_id

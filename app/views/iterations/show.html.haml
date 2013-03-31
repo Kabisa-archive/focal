@@ -1,9 +1,20 @@
-#burndown-chart
+.burndown{ id: dom_id(@burndown) }
+  %h1 #{@burndown.name} &mdash; Iteration #{@iteration.number}
+
+  .details
+    %ul
+      %li.duration #{@iteration.start_on} &mdash; #{@iteration.finish_on}
+      %li.pt_link= link_to "pivotal tracker", @burndown.pivotal_tracker_url
+      %li.print= link_to "print", print_burndown_iteration_path(@burndown, @iteration)
+
+  #burndown-chart.chart
+
+  = render "previous_iterations"
 
 %script(type="text/javascript" src="https://www.google.com/jsapi")
 
 :javascript
-  var chartData = #{@burndown.to_json};
+  var chartData = #{@iteration.to_json};
 
 :javascript
   google.load("visualization", "1", {packages:["corechart"]});

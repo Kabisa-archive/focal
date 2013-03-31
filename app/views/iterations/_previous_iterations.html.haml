@@ -1,0 +1,6 @@
+.box#previous_iterations
+  %h2 Previous Iterations
+  %ol
+    %li= link_to "Current Iteration", burndown_path(@burndown)
+    - @burndown.previous_iterations.each do |iteration|
+      %li= link_to "Iteration #{iteration.number}", burndown_iteration_path(@burndown, iteration.number)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306102335) do
+ActiveRecord::Schema.define(:version => 20130311195902) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -48,10 +48,11 @@ ActiveRecord::Schema.define(:version => 20130306102335) do
 
   create_table "burndowns", :force => true do |t|
     t.string   "name"
-    t.string   "pivotal_token",      :limit => 40, :null => false
-    t.string   "pivotal_project_id",               :null => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.string   "pivotal_token",      :limit => 40,                :null => false
+    t.string   "pivotal_project_id",                              :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.integer  "utc_offset",                       :default => 0
   end
 
   create_table "iterations", :force => true do |t|

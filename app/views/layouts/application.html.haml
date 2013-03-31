@@ -4,8 +4,20 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
     %title= content_for?(:title) ? yield(:title) : "Focal"
     = stylesheet_link_tag :application, :media => "all"
+    = content_for?(:print_stylesheet) ? yield(:print_stylesheet) : stylesheet_link_tag(:print, :media => "print")
     = javascript_include_tag :application
     = csrf_meta_tags
     = yield(:head)
   %body
-    = yield
+    .page
+      = yield
+      .footer
+        This burndown is generated with <a href="https://github.com/kabisaict/focal">Focal &mdash; Sexy Burndowns</a>
+        %br
+        <a href="https://github.com/kabisaict/focal">source</a>
+        &bull;
+        <a href="https://github.com/kabisaict/focal/issues">issues</a>
+        &bull;
+        <a href="http://twitter.com/kabisaict">@kabisaict</a>
+        &bull;
+        <a href="http://kabisa.nl">kabisa.nl</a>
