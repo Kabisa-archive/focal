@@ -11,6 +11,21 @@ describe Burndown do
     it { should allow_mass_assignment_of(:name) }
     it { should allow_mass_assignment_of(:pivotal_token) }
     it { should allow_mass_assignment_of(:pivotal_project_id) }
+    it { should allow_mass_assignment_of(:campfire_subdomain) }
+    it { should allow_mass_assignment_of(:campfire_token) }
+    it { should allow_mass_assignment_of(:campfire_room_id) }
+  end
+
+  context "#campfire_enabled" do
+    it "returns true when enabled" do
+      burndown = FactoryGirl.create(:burndown_with_campfire)
+      expect(burndown).to be_campfire_enabled
+    end
+
+    it "returns false when not enabled" do
+      burndown = FactoryGirl.create(:burndown)
+      expect(burndown).not_to be_campfire_enabled
+    end
   end
 
   context "#current_iterations" do

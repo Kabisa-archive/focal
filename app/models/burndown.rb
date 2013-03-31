@@ -1,6 +1,7 @@
 class Burndown < ActiveRecord::Base
 
-  attr_accessible :name, :pivotal_token, :pivotal_project_id
+  attr_accessible :name, :pivotal_token, :pivotal_project_id,
+    :campfire_subdomain, :campfire_token, :campfire_room_id
 
   has_many :iterations,
     order: "number DESC",
@@ -13,6 +14,10 @@ class Burndown < ActiveRecord::Base
   def previous_iterations
     # Drop the first iteration, the current iteration
     iterations[1..-1]
+  end
+
+  def campfire_enabled?
+    [campfire_subdomain, campfire_token, campfire_room_id].all?(&:present?)
   end
 
   # Import metrics for all projects
