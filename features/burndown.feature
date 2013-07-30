@@ -36,6 +36,10 @@ Feature: Burndown
 		When I look at a previous burndown
 		Then I can see the previous interation's progress
 
+    Scenario: Have a print link
+        When I look at my burndown
+        Then I see a link to the print view
+
     Scenario: View a print style burndown
         When I visit my burndown print page
         Then I should see the print style applied

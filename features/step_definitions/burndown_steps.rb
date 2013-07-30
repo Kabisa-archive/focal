@@ -11,6 +11,13 @@ When /^I look at a previous burndown$/ do
   visit "/burndowns/#{@my_burndown.id}/iterations/#{@previous_iteration.number}"
 end
 
+Then(/^I see a link to the print view$/) do
+  within("#burndown_#{@my_burndown.id}") do
+    print_path = "/burndowns/#{@my_burndown.id}/iterations/#{@my_burndown.current_iteration.number}/print"
+    expect(page).to have_link("print", href: print_path)
+  end
+end
+
 When(/^I visit my burndown print page$/) do
   visit "/burndowns/#{@my_burndown.id}/iterations/#{@my_burndown.current_iteration.number}/print"
 end
