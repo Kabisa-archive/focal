@@ -75,5 +75,6 @@ Then /^I see links to previous iterations$/ do
 end
 
 Then(/^I should see the print style applied$/) do
-  expect(page.source).to have_css('link[rel=stylesheet][href*=print][media=all]')
+  url = "/burndowns/#{@my_burndown.id}/iterations/#{@my_burndown.current_iteration.number}/print"
+  expect(page.source).to have_link("print", href: url)
 end
