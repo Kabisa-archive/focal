@@ -22,7 +22,13 @@ class Burndown < ActiveRecord::Base
 
   # Import metrics for all projects
   def self.import_all
-    Burndown.find_each { |burndown| burndown.import }
+    Burndown.find_each do |burndown|
+      begin
+        burndown.import
+      rescue => e
+        log.error("Error importing data: " + e)
+      end
+    end
   end
 
   def import
