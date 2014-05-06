@@ -26,7 +26,7 @@ class Burndown < ActiveRecord::Base
       begin
         burndown.import
       rescue => e
-        log.error("Error importing data: " + e)
+        logger.error("Error importing data: " + e)
       end
     end
   end
