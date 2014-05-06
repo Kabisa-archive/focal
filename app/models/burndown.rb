@@ -25,8 +25,8 @@ class Burndown < ActiveRecord::Base
     Burndown.find_each do |burndown|
       begin
         burndown.import
-      rescue => e
-        logger.error("Error importing data: " + e)
+      rescue
+        logger.error("Error importing data for #{burndown.id}")
       end
     end
   end
